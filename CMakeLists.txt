@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(oddbot_boot)
+project(oddbot_brain)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -106,7 +106,7 @@ include_directories(include
 
 ## Declare a cpp executable
 add_executable(oddbot_boot_brain src/oddbot_boot_brain.cpp)
-add_executable(oddbot_boot_module src/oddbot_boot_module.cpp)
+add_executable(oddbot_brain_loctest src/oddbot_brain_loctest.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -116,7 +116,7 @@ add_executable(oddbot_boot_module src/oddbot_boot_module.cpp)
 target_link_libraries(oddbot_boot_brain
   ${catkin_LIBRARIES}
 )
-target_link_libraries(oddbot_boot_module
+target_link_libraries(oddbot_brain_loctest
   ${catkin_LIBRARIES}
 )
 
