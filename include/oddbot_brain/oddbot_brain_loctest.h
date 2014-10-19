@@ -16,8 +16,8 @@ class oddbot_brain_loctest
 	public:
 		oddbot_brain_loctest();
 	private:
-		ros::Publisher vel;
-		ros::Subscriber od;
+		ros::Publisher vel_pub;
+		ros::Subscriber od_sub;
 		void get_info(const nav_msgs::Odometry::ConstPtr& od_msg);
 };
 

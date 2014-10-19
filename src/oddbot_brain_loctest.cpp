@@ -1,4 +1,4 @@
-# include "oddbot_brain/oddbot_boot_brain.h"
+# include "oddbot_brain/oddbot_brain_loctest.h"
 
 oddbot_brain_loctest::oddbot_brain_loctest(){
   //the main node handle
@@ -9,24 +9,24 @@ oddbot_brain_loctest::oddbot_brain_loctest(){
   //private_node_handle_.param<double>("param", variable, value);
   
   //initialize the publishers and subscribers
-  stop_pub = nh.advertise<oddbot_msgs::OddbotBootStop>("boot_stop", 1, true);
-  boot_sub = nh.subscribe("boot", 1000, &oddbot_boot_brain::get_info, this);
+  vel_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 10);
+  od_sub = nh.subscribe("odom", 1000, &oddbot_brain_loctest::get_info, this);
 }
 
-void oddbot_boot_brain::get_info(const oddbot_msgs::OddbotBoot::ConstPtr& boot_msg){
+void oddbot_brain_loctest::get_info(const nav_msgs::Odometry::ConstPtr& od_msg){
 	
-	oddbot_msgs::OddbotBootStop obs_msg;
-	obs_msg.subnet = boot_msg->subnet;
-	stop_pub.publish(obs_msg);
-	ROS_INFO("shutdown boot ");
-    
+	geometry_msgs::Twist vel_msg;
+	vel_msg.linear.x = 100;
+	//od_msg.subnet = boot_msg->subnet;
+	ROS_INFO("This is info from odometry: %d", od_msg.twist.linear.x)
+	vel_pub.publish(vel_msg);
 }
 
 int main(int argc, char** argv){
   
-  ros::init(argc, argv, "oddbot_boot_brain");
+  ros::init(argc, argv, "oddbot_brain_loctest");
 
-  oddbot_boot_brain obb = oddbot_boot_brain();
+  oddbot_brain_loctest obl = oddbot_brain_loctest();
   
   ROS_INFO("oddbot boot brain node started!");	
 
