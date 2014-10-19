@@ -18,7 +18,7 @@ void oddbot_brain_loctest::get_info(const nav_msgs::Odometry::ConstPtr& od_msg){
 	geometry_msgs::Twist vel_msg;
 	vel_msg.linear.x = 100;
 	//od_msg.subnet = boot_msg->subnet;
-	ROS_INFO("This is info from odometry: %d", od_msg.twist.linear.x)
+	ROS_INFO("This is info from odometry: %d", od_msg.twist.linear.x);
 	vel_pub.publish(vel_msg);
 }
 
