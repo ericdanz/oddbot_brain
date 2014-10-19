@@ -1,4 +1,4 @@
-# include "oddbot_boot/oddbot_boot_brain.h"
+# include "oddbot_brain/oddbot_boot_brain.h"
 
 oddbot_boot_brain::oddbot_boot_brain(){
   //the main node handle
@@ -19,7 +19,7 @@ void oddbot_boot_brain::get_info(const oddbot_msgs::OddbotBoot::ConstPtr& boot_m
 	obs_msg.subnet = boot_msg->subnet;
 	stop_pub.publish(obs_msg);
 	ROS_INFO("shutdown boot ");
-    //ROS_INFO(obs_msg.subnet);	
+    	
 }
 
 int main(int argc, char** argv){
